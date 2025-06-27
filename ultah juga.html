@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Ulang Tahun, Wawaa!</title>
+
+    <style>
+        /* === BAGIAN CSS (GAYA & DESAIN) === */
+
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;700&display=swap');
+
+        :root {
+            --bg-light: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+            --bg-dark: linear-gradient(45deg, #232526 0%, #414345 100%);
+            --card-bg-light: rgba(255, 255, 255, 0.9);
+            --card-bg-dark: rgba(50, 50, 50, 0.9);
+            --text-light: #f0f0f0;
+            --text-dark: #333;
+            --primary-light: #ff6f61;
+            --primary-dark: #ff8a80;
+            --border-light: #ffde7d;
+            --border-dark: #fbc02d;
+        }
+
+        body {
+            background: var(--bg-light);
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px 0;
+            overflow-x: hidden;
+            color: var(--text-dark);
+            transition: background 0.5s, color 0.5s;
+        }
+
+        body.dark-mode {
+            background: var(--bg-dark);
+            color: var(--text-light);
+        }
+
+        .container {
+            background-color: var(--card-bg-light);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            z-index: 10;
+            transition: background-color 0.5s;
+        }
+
+        body.dark-mode .container {
+            background-color: var(--card-bg-dark);
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            color: var(--primary-light);
+            font-size: 3.2rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            transition: color 0.5s;
+        }
+        
+        body.dark-mode h1 {
+            color: var(--primary-dark);
+        }
+
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid var(--border-light);
+            object-fit: cover;
+            margin: 20px 0;
+            transition: border-color 0.5s;
+        }
+
+        body.dark-mode .profile-pic {
+            border: 5px solid var(--border-dark);
+        }
+
+        .message {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        
+        .wish {
+            font-weight: bold;
+            color: #d14f68;
+            font-size: 1.2rem;
+        }
+        body.dark-mode .wish {
+            color: #f48fb1;
+        }
+
+        /* === GAYA UNTUK TOMBOL-TOMBOL BARU === */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap; /* Agar tombol turun jika tidak cukup ruang */
+            margin-top: 25px;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        }
+        #playButton { background-color: #88d8b0; color: white; }
+        #giftButton { background-color: #6495ed; color: white; }
+        #themeButton { background-color: #ffde7d; color: #333; }
+        
+        /* === KOTAK KADO TERSEMBUNYI === */
+        #gift-box {
+            display: none; /* Awalnya disembunyikan */
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #fff0f5;
+            border: 2px dashed var(--primary-light);
+            border-radius: 10px;
+        }
+        body.dark-mode #gift-box {
+            background-color: #4a2c3a;
+            border-color: var(--primary-dark);
+        }
+        #gift-box img {
+            max-width: 80%;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        /* --- Animasi Konfeti --- */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 20px;
+            background-color: #f00; /* Warna akan diubah oleh JavaScript */
+            top: -50px;
+            opacity: 0.9;
+            animation: fall linear forwards;
+            z-index: 0;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Selamat Ulang Tahun, <br> Wawaaa!</h1>
+        
+        <img class="profile-pic" src="wawa_jlk.jpg" >
+
+        <div class="message">
+            <p>Hari ini adalah hari yang spesial, hari di mana kamu bertambah usia ke 70 tahun. Mks udh mau jd  tmn yang selalu dengerin curhatan gue!</p>
+            <p class="wish">Semoga panjang umur, sehat selalu, makin sukses, dan semua impianmu tercapai, Mau jadi Drg kan?. Aamiin!</p>
+        </div>
+        
+        <div class="button-container">
+            <button id="playButton" class="btn">Putar Lagu 🎵</button>
+            <button id="giftButton" class="btn">Buka Kado Spesial 🎁</button>
+            <button id="themeButton" class="btn">Ubah Tema 🌙</button>
+        </div>
+
+        <div id="gift-box">
+            <h2>Ini kado spesial buatmu!</h2>
+            <p>Sebuah memori indah kita berdua. Semoga kamu suka!</p>
+            <img src="wawa2.jpg" alt="Foto Kenangan">
+        </div>
+    </div>
+    
+    <audio id="birthdaySong" src="wandi.mp3" loop></audio>
+
+    <script>
+        /* === BAGIAN JAVASCRIPT (INTERAKTIVITAS & ANIMASI) === */
+        
+        // --- Referensi ke elemen-elemen HTML ---
+        const playButton = document.getElementById('playButton');
+        const birthdaySong = document.getElementById('birthdaySong');
+        const giftButton = document.getElementById('giftButton');
+        const giftBox = document.getElementById('gift-box');
+        const themeButton = document.getElementById('themeButton');
+        
+        // --- Fungsi Tombol Putar Lagu ---
+        playButton.addEventListener('click', function() {
+            if (birthdaySong.paused) {
+                birthdaySong.play();
+                playButton.textContent = "Jeda Lagu ⏸️";
+            } else {
+                birthdaySong.pause();
+                playButton.textContent = "Putar Lagu 🎵";
+            }
+        });
+
+        // --- Fungsi Tombol Buka Kado ---
+        giftButton.addEventListener('click', function() {
+            giftBox.style.display = 'block';
+            giftButton.style.display = 'none'; // Sembunyikan tombol kado setelah diklik
+        });
+
+        // --- Fungsi Tombol Ubah Tema ---
+        themeButton.addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            // Ubah teks tombol berdasarkan tema
+            if (document.body.classList.contains('dark-mode')) {
+                themeButton.innerHTML = "Ubah Tema ☀️";
+            } else {
+                themeButton.innerHTML = "Ubah Tema 🌙";
+            }
+        });
+
+        // --- Fungsi Animasi Konfeti (tetap sama) ---
+        function createConfetti() {
+            const confettiContainer = document.body;
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.animationDuration = (Math.random() * 3) + 4 + 's';
+            const colors = ['#ff6f61', '#ffde7d', '#88d8b0', '#6495ed', '#dda0dd'];
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confettiContainer.appendChild(confetti);
+            setTimeout(() => {
+                confetti.remove();
+            }, 7000);
+        }
+        setInterval(createConfetti, 200);
+    </script>
+
+</body>
+</html>
